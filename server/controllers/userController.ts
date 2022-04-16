@@ -2,7 +2,9 @@ import { Request, Response } from "express";
 import User from "../models/User";
 import bcrypt from "bcrypt";
 import { URLSearchParams } from "url";
-import fetch from "node-fetch";
+import { RequestInfo, RequestInit } from "node-fetch";
+
+const fetch = (url: RequestInfo, init?: RequestInit) =>  import("node-fetch").then(({ default: fetch }) => fetch(url, init));
 
 export const postLogin = async (req: Request, res: Response) => {
   const {
