@@ -6,23 +6,7 @@ import { useRecoilState } from "recoil";
 import { loginState } from "../atoms";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-
-const FormContainer = styled.div`
-  display: flex;
-  margin-top: 50px;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  min-height: 50vh;
-  color: white;
-  h3 {
-    text-align: center;
-    margin-bottom: 50px;
-    font-size: 40px;
-    font-weight: 700;
-    color: ${(props) => props.theme.periwinkleShade50};
-  }
-`;
+import { JoinFormContainer } from "../styles/formStyle";
 
 const Form = styled(motion.form)`
   background-color: ${(props) => props.theme.periwinkleTint50};
@@ -195,7 +179,7 @@ function JoinForm() {
   };
   return (
     <>
-      <FormContainer>
+      <JoinFormContainer>
         <Form
           onSubmit={handleSubmit(onValid)}
           variants={joinFormVar}
@@ -276,7 +260,7 @@ function JoinForm() {
             <button>가입</button>
           </ButtonContainer>
         </Form>
-      </FormContainer>
+      </JoinFormContainer>
     </>
   );
 }

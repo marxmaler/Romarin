@@ -5,6 +5,7 @@ import { useRecoilValue, useResetRecoilState } from "recoil";
 import styled from "styled-components";
 import { testResultsState, testSettingState } from "../atoms";
 import HeaderMenu from "../components/HeaderMenu";
+import { basicShowVariants } from "../styles/motionVariants";
 import { getLanguageInKorean } from "../util/language";
 
 const TestSheet = styled.div`
@@ -68,8 +69,6 @@ const Li = styled.li`
   }
 `;
 
-const Answers = styled.div``;
-
 const DarkBox = styled.div`
   background-color: ${(props) => props.theme.periwinkleShade30};
   padding: 20px;
@@ -106,21 +105,6 @@ const TransparentBox = styled.div`
   }
 `;
 
-const testResultSheetVar = {
-  hidden: {
-    y: -30,
-    opacity: 0,
-    transition: {
-      duration: 0.7,
-    },
-  },
-  show: {
-    y: 0,
-    opacity: 1,
-    transition: { duration: 0.7 },
-  },
-};
-
 function TestResult() {
   const navigate = useNavigate();
   const testResults = useRecoilValue(testResultsState);
@@ -139,7 +123,7 @@ function TestResult() {
       <HeaderMenu></HeaderMenu>
       <TestSheet>
         <TestResultBox
-          variants={testResultSheetVar}
+          variants={basicShowVariants}
           initial="hidden"
           animate="show"
         >

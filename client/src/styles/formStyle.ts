@@ -31,7 +31,18 @@ export const TestSettingFormContainer = styled(FormContainer)`
   }
 `;
 
-export const Form = styled.form`
+export const JoinFormContainer = styled(FormContainer)`
+  margin-top: 50px;
+  padding-bottom: 100px;
+  h3 {
+    text-shadow: 1px 1px 1px rgba(189, 195, 199, 0.7);
+    margin-bottom: 50px;
+    font-size: 40px;
+    color: ${(props) => props.theme.periwinkleShade50};
+  }
+`;
+
+export const Form = styled(motion.form)`
   background-color: ${(props) => props.theme.periwinkleTint50};
   color: white;
   padding: 30px 50px;
@@ -102,15 +113,8 @@ export const Form = styled.form`
   }
 `;
 
-export const TestSettingForm = styled(motion.form)`
-  background-color: ${(props) => props.theme.periwinkleTint50};
-  padding: 30px 50px;
-  display: flex;
-  flex-direction: column;
+export const TestSettingForm = styled(Form)`
   min-width: max-content;
-  min-height: max-content;
-  border: 1.5px solid ${(props) => props.theme.periwinkleShade50};
-  border-radius: 20px;
   h3 {
     color: ${(props) => props.theme.periwinkleShade50};
   }

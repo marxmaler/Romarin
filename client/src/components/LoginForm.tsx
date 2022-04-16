@@ -5,6 +5,8 @@ import { loginState } from "../atoms";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+import { basicShowVariants } from "../styles/motionVariants";
+import { ButtonContainer } from "../styles/formStyle";
 
 const FormContainer = styled.div`
   display: flex;
@@ -95,26 +97,6 @@ const DarkBox = styled.div`
   }
 `;
 
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  min-height: max-content;
-`;
-
-const loginFormVar = {
-  hidden: {
-    opacity: 0,
-    y: -50,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-    },
-  },
-};
-
 interface IForm {
   email: string;
   password: string;
@@ -137,13 +119,13 @@ function LoginForm() {
   }, [setFocus]);
 
   const onValid = async (data: IForm) => {
-    console.log(data);
+    // console.log(data);
     const response = await fetch("/api/users/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ data }),
     });
-    console.log(response.status);
+    // console.log(response.status);
     if (response.status === 404) {
       setError("email", { message: "등록되지 않은 이메일입니다." });
     } else if (response.status === 400) {
@@ -194,9 +176,10 @@ function LoginForm() {
       <FormContainer>
         <Form
           onSubmit={handleSubmit(onValid)}
-          variants={loginFormVar}
+          variants={basicShowVariants}
           initial="hidden"
           animate="show"
+          custom={{ yValue: -50 }}
         >
           <h3>로그인</h3>
           <ul>

@@ -63,7 +63,7 @@ interface User {
 const userSchema = new Schema<User>({
   email: { type: String, required: true },
   name: { type: String, required: true },
-  password: { type: String, required: true },
+  password: { type: String, default: "" },
   socialOnly: { type: Boolean, default: false, required: true },
   stat: {
     En: {

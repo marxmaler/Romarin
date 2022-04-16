@@ -14,19 +14,8 @@ import {
 } from "../atoms";
 import { useEffect } from "react";
 import { basicShowVariants } from "../styles/motionVariants";
-
-const Container = styled.div`
-  background: linear-gradient(
-    to right bottom,
-    rgba(156, 136, 255, 1),
-    rgba(62, 54, 102, 1)
-  );
-  width: 100%;
-  color: ${(props) => props.theme.periwinkleTint90};
-  padding: 50px;
-  min-height: 85vh;
-  position: relative;
-`;
+import { ContainerDiffColor } from "../styles/containerStyle";
+import OauthBox from "../components/OauthBox";
 
 const ContentSection = styled(motion.div)`
   background-color: ${(props) => props.theme.periwinkleTint90};
@@ -125,7 +114,7 @@ function Home() {
   return (
     <>
       <HeaderMenu />
-      <Container>
+      <ContainerDiffColor>
         <ContentSection
           variants={basicShowVariants}
           initial="hidden"
@@ -171,7 +160,7 @@ function Home() {
             </ul>
           </div>
         </ContentSection>
-      </Container>
+      </ContainerDiffColor>
     </>
   );
 }

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ButtonContainer } from "./formStyle";
+import { motion } from "framer-motion";
 
 export const overlay = {
   backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -25,6 +26,15 @@ export const ModalText = styled.span`
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 30px;
+  color: ${(props) => props.theme.periwinkleShade50};
+`;
+
+export const GitCallbackModalText = styled(ModalText)`
+  line-height: 2em;
+  margin-bottom: 0;
+`;
+
+export const LoadingDot = styled(motion.span)`
   color: ${(props) => props.theme.periwinkleShade50};
 `;
 

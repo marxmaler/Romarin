@@ -10,8 +10,16 @@ export const Container = styled(motion.div)`
 
   min-height: 100vh;
   width: 100%;
-  color: white;
+  color: ${(props) => props.theme.periwinkleTint90};
   padding: 50px;
+`;
+
+export const ContainerDiffColor = styled(Container)`
+  background: linear-gradient(
+    to right bottom,
+    rgba(156, 136, 255, 1),
+    rgba(16, 14, 25, 1)
+  );
 `;
 
 export const ReviewContainer = styled(Container)`
@@ -24,12 +32,7 @@ export const ReviewContainer = styled(Container)`
   }
 `;
 
-export const SearchContainer = styled(Container)`
-  background: linear-gradient(
-    to right bottom,
-    rgba(156, 136, 255, 1),
-    rgba(62, 54, 102, 1)
-  );
+export const SearchContainer = styled(ContainerDiffColor)`
   display: flex;
   flex-direction: column;
   align-items: center;

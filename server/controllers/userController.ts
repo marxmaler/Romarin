@@ -2,9 +2,7 @@ import { Request, Response } from "express";
 import User from "../models/User";
 import bcrypt from "bcrypt";
 import { URLSearchParams } from "url";
-import { RequestInfo, RequestInit } from "node-fetch";
-
-const fetch = (url: RequestInfo, init?: RequestInit) =>  import("node-fetch").then(({ default: fetch }) => fetch(url, init));
+import fetch from "node-fetch";
 
 export const postLogin = async (req: Request, res: Response) => {
   const {
@@ -142,6 +140,7 @@ interface IUserData {
 }
 export const postGithubAuthLogin = async (req: Request, res: Response) => {
   const baseUrl = "https://github.com/login/oauth/access_token";
+  console.log(req.body.code);
   const config = {
     client_id: process.env.GH_CLIENT + "",
     client_secret: process.env.GH_SECRET + "",
@@ -158,6 +157,7 @@ export const postGithubAuthLogin = async (req: Request, res: Response) => {
     })
   ).json()) as ITokenData;
 
+  console.log(tokenData);
   if ("access_token" in tokenData) {
     const { access_token } = tokenData;
     const apiUrl = "https://api.github.com/user";
@@ -189,7 +189,7 @@ export const postGithubAuthLogin = async (req: Request, res: Response) => {
         email: emailObj.email,
         name: userData.name,
         password: "",
-        joinedWithSocial: true,
+        socialOnly: true,
       });
     }
     req.session.loggedIn = true;
@@ -197,6 +197,10 @@ export const postGithubAuthLogin = async (req: Request, res: Response) => {
     console.log(user);
     return res.status(200).send({ user });
   } else {
+    // error: 'bad_verification_code',
+    // error_description: 'The code passed is incorrect or expired.',
+    // error_uri: 'https://docs.github.com/apps/managing-oauth-apps/troubleshooting-oauth-app-access-token-request-errors/#bad-verification-code'
+
     return res.sendStatus(400);
   }
 };

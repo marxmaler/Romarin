@@ -17,6 +17,7 @@ export const fetchWeeklyWords = async () => {
 };
 
 export const fetchGithubCode = async (code: string) => {
+  // console.log("code:", code);
   return await (
     await fetch(`/api/users/login/github/`, {
       method: "POST",
