@@ -21,69 +21,8 @@ import LineChart from "../components/LineChart";
 import { getLanguageWordsAndCntArr } from "../util/word";
 import HorizontalBarChart from "../components/HorizontalBarChart";
 import { motion } from "framer-motion";
-
-const Container = styled(motion.div)`
-  background: linear-gradient(
-    to right bottom,
-    rgba(156, 136, 255, 1),
-    rgba(62, 54, 102, 1)
-  );
-  min-height: 50vh;
-  width: 100%;
-  color: white;
-  padding: 50px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  ul {
-    padding: 20px;
-    border-radius: 30px;
-    border: 1.5px solid ${(props) => props.theme.periwinkleShade50};
-    background-color: ${(props) => props.theme.periwinkleTint90};
-    color: ${(props) => props.theme.periwinkleShade50};
-    width: max-content;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    h3 {
-      font-size: 33px;
-      padding: 20px;
-      font-weight: 900;
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-    }
-    li {
-      display: block;
-      padding: 1em;
-    }
-  }
-`;
-
-const LiContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  background-color: ${(props) => props.theme.periwinkle};
-  color: white;
-  border-radius: 10px;
-  min-width: 45%;
-  margin: 1.5em;
-  margin-bottom: -0.5em;
-  padding: 0px 30px;
-`;
-
-const ulVar = {
-  hidden: {
-    opacity: 0,
-    y: -30,
-  },
-  show: (ulNum: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.4 * (ulNum - 1),
-      duration: 0.7,
-    },
-  }),
-};
+import { basicShowVariants } from "../styles/motionVariants";
+import { LiContainer, StatisticsContainer } from "../styles/containerStyle";
 
 function Statistics() {
   const [loginInfo, setLoginInfo] = useRecoilState(loginState);
@@ -165,10 +104,10 @@ function Statistics() {
     <>
       <HeaderMenu />
       {!(isLoadingUser && isLoadingWeeklyWords) && (
-        <Container>
+        <StatisticsContainer>
           <motion.ul
-            custom={1}
-            variants={ulVar}
+            custom={{ delay: 0 }}
+            variants={basicShowVariants}
             initial="hidden"
             animate="show"
           >
@@ -184,8 +123,8 @@ function Statistics() {
             <PieChart labels={languagesInKo} series={totals} />
           </motion.ul>
           <motion.ul
-            custom={2}
-            variants={ulVar}
+            custom={{ delay: 0.4 }}
+            variants={basicShowVariants}
             initial="hidden"
             animate="show"
           >
@@ -243,8 +182,8 @@ function Statistics() {
             />
           </motion.ul>
           <motion.ul
-            custom={3}
-            variants={ulVar}
+            custom={{ delay: 0.8 }}
+            variants={basicShowVariants}
             initial="hidden"
             animate="show"
           >
@@ -308,7 +247,7 @@ function Statistics() {
               />
             )}
           </motion.ul>
-        </Container>
+        </StatisticsContainer>
       )}
     </>
   );

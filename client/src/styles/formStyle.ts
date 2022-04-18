@@ -32,13 +32,13 @@ export const TestSettingFormContainer = styled(FormContainer)`
 `;
 
 export const JoinFormContainer = styled(FormContainer)`
+  height: fit-content !important;
+  min-height: 0;
   margin-top: 50px;
-  padding-bottom: 100px;
+  padding-bottom: 80px;
   h3 {
-    text-shadow: 1px 1px 1px rgba(189, 195, 199, 0.7);
     margin-bottom: 50px;
     font-size: 40px;
-    color: ${(props) => props.theme.periwinkleShade50};
   }
 `;
 
@@ -113,6 +113,45 @@ export const Form = styled(motion.form)`
   }
 `;
 
+export const JoinPageForm = styled(Form)`
+  min-width: max-content;
+
+  ul {
+    border-radius: 5px;
+    padding: 10px;
+    li {
+      margin-bottom: 0;
+      label {
+        span {
+          font-size: 12px;
+          margin-bottom: 0.5em;
+        }
+      }
+    }
+  }
+  button {
+    margin-top: 0.5em;
+    cursor: pointer;
+  }
+`;
+
+export const LoginPageForm = styled(Form)`
+  min-width: max-content;
+  ul {
+    li {
+      flex-direction: row;
+      label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 6em;
+        margin-right: 0.5em;
+      }
+    }
+  }
+`;
+
 export const TestSettingForm = styled(Form)`
   min-width: max-content;
   h3 {
@@ -176,4 +215,8 @@ export const SearchNoWords = styled(NoWords)`
   margin-top: 40px;
   font-weight: 600;
   margin-bottom: 40px;
+`;
+
+export const JoinPwConfirm = styled.strong`
+  margin-top: 10px;
 `;

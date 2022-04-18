@@ -6,96 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { basicShowVariants } from "../styles/motionVariants";
-import { ButtonContainer } from "../styles/formStyle";
-
-const FormContainer = styled.div`
-  display: flex;
-  margin-top: 50px;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  min-height: 50vh;
-  color: white;
-  h3 {
-    text-align: center;
-    margin-bottom: 50px;
-    font-size: 40px;
-    font-weight: 700;
-    color: ${(props) => props.theme.periwinkleShade50};
-  }
-`;
-
-const Form = styled(motion.form)`
-  background-color: ${(props) => props.theme.periwinkleTint50};
-
-  padding: 30px 50px;
-  display: flex;
-  flex-direction: column;
-  min-width: max-content;
-  min-height: max-content;
-  border: 1.5px solid ${(props) => props.theme.periwinkleShade50};
-  border-radius: 20px;
-
-  ul {
-    li {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 0.5em;
-      &:last-child {
-        margin-bottom: 0;
-      }
-      label {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        width: 6em;
-        margin-right: 0.5em;
-      }
-      input {
-        width: 100%;
-        padding: 10px;
-        border-radius: 10px;
-        border: 0;
-        background-color: ${(props) => props.theme.periwinkleTint90};
-        color: ${(props) => props.theme.periwinkleShade50};
-        &::placeholder {
-          text-align: center;
-        }
-      }
-    }
-  }
-  button {
-    margin-top: 0.5em;
-    cursor: pointer;
-  }
-`;
-
-const ErrorMessage = styled.li`
-  color: red;
-  font-size: 12px;
-  span {
-    padding: 1em;
-  }
-`;
-
-const DarkBox = styled.div`
-  background-color: ${(props) => props.theme.periwinkleShade30};
-  padding: 20px;
-  border-radius: 10px;
-  margin: 10px 0px;
-  color: ${(props) => props.theme.periwinkleTint90};
-  border: 1.5px solid ${(props) => props.theme.periwinkleShade50};
-  &:first-child {
-    margin-top: -30px;
-  }
-  span {
-    margin-bottom: 10px;
-  }
-  strong {
-    margin-bottom: 10px;
-  }
-`;
+import {
+  LoginPageForm,
+  ButtonContainer,
+  ErrorMessage,
+  JoinFormContainer,
+} from "../styles/formStyle";
+import { DarkBox } from "../styles/boxStyle";
 
 interface IForm {
   email: string;
@@ -173,8 +90,8 @@ function LoginForm() {
   };
   return (
     <>
-      <FormContainer>
-        <Form
+      <JoinFormContainer>
+        <LoginPageForm
           onSubmit={handleSubmit(onValid)}
           variants={basicShowVariants}
           initial="hidden"
@@ -216,8 +133,8 @@ function LoginForm() {
           <ButtonContainer>
             <button>로그인</button>
           </ButtonContainer>
-        </Form>
-      </FormContainer>
+        </LoginPageForm>
+      </JoinFormContainer>
     </>
   );
 }

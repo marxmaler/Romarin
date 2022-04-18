@@ -6,111 +6,15 @@ import { useRecoilState } from "recoil";
 import { loginState } from "../atoms";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { JoinFormContainer } from "../styles/formStyle";
-
-const Form = styled(motion.form)`
-  background-color: ${(props) => props.theme.periwinkleTint50};
-  padding: 30px 50px;
-  display: flex;
-  flex-direction: column;
-  min-width: max-content;
-  min-height: max-content;
-  border: 1px solid ${(props) => props.theme.periwinkleTint90};
-  border-radius: 20px;
-
-  ul {
-    border-radius: 5px;
-    padding: 10px;
-    li {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-      label {
-        display: inline-block;
-        text-align: start;
-
-        strong {
-          font-size: 20px;
-          font-weight: 600;
-          display: block;
-        }
-      }
-      span {
-        font-size: 12px;
-        margin-bottom: 0.5em;
-      }
-      input {
-        width: 100%;
-        padding: 10px;
-        border-radius: 10px;
-        border: 0;
-        background-color: ${(props) => props.theme.periwinkleTint90};
-        color: ${(props) => props.theme.periwinkleShade50};
-        &::placeholder {
-          text-align: center;
-        }
-      }
-    }
-  }
-  button {
-    margin-top: 0.5em;
-    cursor: pointer;
-  }
-`;
-
-const ErrorMessage = styled.li`
-  color: red;
-  font-size: 12px;
-  span {
-    padding: 1em;
-  }
-`;
-
-const DarkBox = styled.div`
-  background-color: ${(props) => props.theme.periwinkleShade30};
-  padding: 20px;
-  border-radius: 10px;
-  margin: 10px 0px;
-  color: ${(props) => props.theme.periwinkleTint90};
-  border: ${(props) => props.theme.periwinkleTint90} 1px solid;
-  &:first-child {
-    margin-top: -30px;
-  }
-  span {
-    margin-bottom: 10px;
-  }
-  strong {
-    margin-bottom: 10px;
-  }
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  min-height: max-content;
-`;
-
-const ConfirmStrong = styled.strong`
-  margin-top: 10px;
-`;
-
-const joinFormVar = {
-  hidden: {
-    opacity: 0,
-    y: -50,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-    },
-  },
-};
+import {
+  ButtonContainer,
+  ErrorMessage,
+  JoinFormContainer,
+  JoinPageForm,
+  JoinPwConfirm,
+} from "../styles/formStyle";
+import { basicShowVariants } from "../styles/motionVariants";
+import { DarkBox } from "../styles/boxStyle";
 
 interface IForm {
   email: string;
@@ -180,13 +84,14 @@ function JoinForm() {
   return (
     <>
       <JoinFormContainer>
-        <Form
+        <JoinPageForm
           onSubmit={handleSubmit(onValid)}
-          variants={joinFormVar}
+          variants={basicShowVariants}
           initial="hidden"
           animate="show"
+          custom={{ yValue: -50 }}
         >
-          <h3>가입</h3>
+          <h3>환영합니다</h3>
           <ul>
             <DarkBox>
               <li>
@@ -195,8 +100,10 @@ function JoinForm() {
                 </label>
                 <input
                   type={"email"}
-                  {...register("email", { required: true })}
-                  placeholder="이메일"
+                  {...register("email", {
+                    required: "이메일 주소를 입력해주세요.",
+                  })}
+                  placeholder="required"
                 />
               </li>
               <ErrorMessage>
@@ -213,11 +120,14 @@ function JoinForm() {
                 <input
                   type={"text"}
                   {...register("name", {
-                    required: true,
+                    required: "닉네임을 입력해주세요.",
                   })}
-                  placeholder="닉네임"
-                ></input>
+                  placeholder="required"
+                />
               </li>
+              <ErrorMessage>
+                {errors?.name?.message && <span>{errors?.name?.message}</span>}
+              </ErrorMessage>
             </DarkBox>
             <DarkBox>
               <li>
@@ -230,9 +140,11 @@ function JoinForm() {
                 </span>
                 <input
                   type={"password"}
-                  {...register("password", { required: true })}
-                  placeholder="비밀번호"
-                ></input>
+                  {...register("password", {
+                    required: "비밀번호를 입력해주세요.",
+                  })}
+                  placeholder="required"
+                />
               </li>
               <ErrorMessage>
                 {errors?.password?.message && (
@@ -241,13 +153,16 @@ function JoinForm() {
               </ErrorMessage>
               <li>
                 <label>
-                  <ConfirmStrong>비밀번호 확인</ConfirmStrong>
+                  <JoinPwConfirm>비밀번호 확인</JoinPwConfirm>
                 </label>
                 <input
                   type={"password"}
-                  {...register("passwordConfirm", { required: true })}
-                  placeholder="비밀번호 확인"
-                ></input>
+                  {...register("passwordConfirm", {
+                    required:
+                      "비밀번호 확인을 위해 비밀번호를 다시 한 번 입력해주세요.",
+                  })}
+                  placeholder="required"
+                />
               </li>
               <ErrorMessage>
                 {errors?.passwordConfirm?.message && (
@@ -259,7 +174,7 @@ function JoinForm() {
           <ButtonContainer>
             <button>가입</button>
           </ButtonContainer>
-        </Form>
+        </JoinPageForm>
       </JoinFormContainer>
     </>
   );
