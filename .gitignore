@@ -1,8 +1,6 @@
 .env
-build/
 node_modules/*
 !node_modules/@types/
 node_modules/@types/*
 !node_modules/@types/express-session/
 client/node_modules/
-client/build/
