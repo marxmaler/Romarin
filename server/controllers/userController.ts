@@ -140,11 +140,14 @@ interface IUserData {
 }
 export const postGithubAuthLogin = async (req: Request, res: Response) => {
   const baseUrl = "https://github.com/login/oauth/access_token";
-  console.log(req.body.code);
+  const codeStringSplits = req.body.code.split("code=");
+  const code =
+    codeStringSplits.length > 1 ? codeStringSplits[1] + "" : req.body.code + "";
+  console.log("code:", code);
   const config = {
     client_id: process.env.GH_CLIENT + "",
     client_secret: process.env.GH_SECRET + "",
-    code: req.body.code + "",
+    code,
   };
   const params = new URLSearchParams(config).toString();
   const finalUrl = `${baseUrl}?${params}`;
@@ -192,6 +195,7 @@ export const postGithubAuthLogin = async (req: Request, res: Response) => {
         socialOnly: true,
       });
     }
+
     req.session.loggedIn = true;
     req.session.user = user;
     console.log(user);

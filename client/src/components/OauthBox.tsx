@@ -20,7 +20,7 @@ function OauthBox() {
       >
         <h3>소셜 계정으로 계속하기</h3>
         <SocialLoginBtn onClick={onGithubClick}>
-          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" />
+          <img src="/github_icon.png" />
         </SocialLoginBtn>
       </OauthWrapper>
     </Positioner>

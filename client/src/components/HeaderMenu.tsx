@@ -28,7 +28,7 @@ const HeaderContainer = styled.header`
   color: ${(props) => props.theme.periwinkleTint90};
   &::before {
     content: "";
-    background-image: url("https://cdn.pixabay.com/photo/2015/12/13/00/11/rosemary-1090419__340.jpg");
+    background-image: url("/banner_image.jpg");
     background-position-y: center;
     opacity: 0.8;
     position: absolute;

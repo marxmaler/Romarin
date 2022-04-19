@@ -172,7 +172,7 @@ export const patchGradedWords = async (req: Request, res: Response) => {
           }
           if (nthRev !== "never") {
             user.stat[statLang][nthRev] += 1;
-            user.save();
+            await user.save();
           }
         }
         console.log("조작 후:", user?.stat[statLang]);

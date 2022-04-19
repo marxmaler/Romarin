@@ -11,7 +11,8 @@ import apiRouter from "./router/apiRouter";
 import helmet from "helmet";
 
 const app = express();
-const buildAddress = path.join(__dirname, "..", "client/build/");
+const buildAddress = path.join(__dirname, "..", "..", "client/build/");
+console.log("current directory:", __dirname);
 
 //전역 middleware 선언부
 app.use(helmet());
