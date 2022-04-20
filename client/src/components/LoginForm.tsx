@@ -4,7 +4,6 @@ import { useSetRecoilState } from "recoil";
 import { loginState } from "../atoms";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { motion } from "framer-motion";
 import { basicShowVariants } from "../styles/motionVariants";
 import {
   LoginPageForm,
