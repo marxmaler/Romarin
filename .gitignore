@@ -1,5 +1,6 @@
 .env
 node_modules/*
+!node_modules/mongodb
 !node_modules/@types/
 node_modules/@types/*
 !node_modules/@types/express-session/
