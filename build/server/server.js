@@ -19,7 +19,6 @@ const buildAddress = path_1.default.join(__dirname, "..", "..", "client/build/")
 // console.log("current directory:", __dirname);
 //전역 middleware 선언부
 app.use((0, cors_1.default)());
-// app.use(helmet());
 app.use((0, morgan_1.default)("dev"));
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
