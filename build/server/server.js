@@ -14,13 +14,12 @@ const connect_mongo_1 = __importDefault(require("connect-mongo"));
 const morgan_1 = __importDefault(require("morgan"));
 const path_1 = __importDefault(require("path"));
 const apiRouter_1 = __importDefault(require("./router/apiRouter"));
-const helmet_1 = __importDefault(require("helmet"));
 const app = (0, express_1.default)();
 const buildAddress = path_1.default.join(__dirname, "..", "..", "client/build/");
 // console.log("current directory:", __dirname);
 //전역 middleware 선언부
 app.use((0, cors_1.default)());
-app.use((0, helmet_1.default)());
+// app.use(helmet());
 app.use((0, morgan_1.default)("dev"));
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());

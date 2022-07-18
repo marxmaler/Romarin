@@ -17,7 +17,7 @@ const buildAddress = path.join(__dirname, "..", "..", "client/build/");
 
 //전역 middleware 선언부
 app.use(cors());
-app.use(helmet());
+// app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
