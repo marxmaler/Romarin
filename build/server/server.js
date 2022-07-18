@@ -19,7 +19,7 @@ const app = (0, express_1.default)();
 const buildAddress = path_1.default.join(__dirname, "..", "..", "client/build/");
 // console.log("current directory:", __dirname);
 const corsOptions = {
-    origin: `http://15.164.98.24:${process.env.PORT}`,
+    origin: "http://15.164.98.24",
     credentials: true,
 };
 //전역 middleware 선언부
