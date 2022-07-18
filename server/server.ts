@@ -3,6 +3,7 @@ import "./db";
 import "./models/Word";
 import "./models/User";
 import express, { Request, Response } from "express";
+import cors from "cors";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import morgan from "morgan";
@@ -12,13 +13,19 @@ import helmet from "helmet";
 
 const app = express();
 const buildAddress = path.join(__dirname, "..", "..", "client/build/");
-console.log("current directory:", __dirname);
+// console.log("current directory:", __dirname);
+
+const corsOptions = {
+  origin: `http://15.164.98.24:${process.env.PORT}`,
+  credentials: true,
+};
 
 //전역 middleware 선언부
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors(corsOptions));
 
 app.use(
   session({
