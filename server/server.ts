@@ -16,7 +16,7 @@ const buildAddress = path.join(__dirname, "..", "..", "client/build/");
 // console.log("current directory:", __dirname);
 
 const corsOptions = {
-  origin: `http://15.164.98.24:${process.env.PORT}`,
+  origin: "http://15.164.98.24",
   credentials: true,
 };
 
