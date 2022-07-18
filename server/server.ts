@@ -15,17 +15,13 @@ const app = express();
 const buildAddress = path.join(__dirname, "..", "..", "client/build/");
 // console.log("current directory:", __dirname);
 
-const corsOptions = {
-  origin: "http://15.164.98.24",
-  credentials: true,
-};
+app.options("*", cors());
 
 //전역 middleware 선언부
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors(corsOptions));
 
 app.use(
   session({
