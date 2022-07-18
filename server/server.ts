@@ -3,13 +3,14 @@ import "./db";
 import "./models/Word";
 import "./models/User";
 import express, { Request, Response } from "express";
-import cors from "cors";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import morgan from "morgan";
 import path from "path";
 import apiRouter from "./router/apiRouter";
 import helmet from "helmet";
+
+const cors = require("cors");
 
 const app = express();
 const buildAddress = path.join(__dirname, "..", "..", "client/build/");
